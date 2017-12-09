@@ -75,10 +75,10 @@ server <- function(input, output, session) {
                        as.numeric(hail_filteredData()$Lat),
                        color = "blue",
                        group = "Hail Reports",
-					             popup = paste("<b>Comments:</b>", hail_filteredData()$Comments, "<br/>", "<br/>",
-					                           "<b>Size</b>: ", hail_filteredData()$Size, "<br/>", "<br/>",
-					                           "<b>Time</b>: ", hail_filteredData()$Time, "<br/>", "<br/>",
-					                           "<b>Date</b>: ", hail_filteredData()$Date)) %>%
+		       popup = paste("<b>Comments:</b>", hail_filteredData()$Comments, "<br/>", "<br/>",
+				     "<b>Size</b>: ", hail_filteredData()$Size, "<br/>", "<br/>",
+				     "<b>Time</b>: ", hail_filteredData()$Time, "<br/>", "<br/>",
+				     "<b>Date</b>: ", hail_filteredData()$Date)) %>%
       addCircleMarkers(as.numeric(torn_filteredData()$Lon), 
                        as.numeric(torn_filteredData()$Lat), 
                        color = "red", 
