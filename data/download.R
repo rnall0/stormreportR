@@ -8,7 +8,7 @@ gs_ls()
 table <- "Hail Reports"
 sheet <- gs_title(table)
 hail<-gs_read_csv(sheet)
-hail<-tail(hail, 6)
+hail<-tail(hail, 1)
 
 
 link<-"http://www.spc.noaa.gov/climo/reports/"
@@ -46,7 +46,7 @@ dbDisconnect(con)
 table <- "Tornado Reports"
 sheet <- gs_title(table)
 torn<-gs_read_csv(sheet)
-torn<-tail(torn, 6)
+torn<-tail(torn, 1)
 
 
 link<-"http://www.spc.noaa.gov/climo/reports/"
@@ -84,7 +84,7 @@ dbDisconnect(con)
 table <- "Wind Reports"
 sheet <- gs_title(table)
 wind<-gs_read(sheet)
-wind<-tail(wind, 6)
+wind<-tail(wind, 1)
 
 
 link<-"http://www.spc.noaa.gov/climo/reports/"
