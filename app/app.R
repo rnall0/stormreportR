@@ -65,9 +65,12 @@ server <- function(input, output, session) {
      on.exit(DBI::dbDisconnect(con))
     })
   
+#insert dummy variable
+   types = c("wind", "hail", "tornado")
+   df = data.frame(types)
   
   observe({
-    if(nrow(wind_filteredData()) == 0) {leafletProxy("mymap") %>% clearMarkers()}
+    if(nrow(df) == 0) {leafletProxy("mymap") %>% clearMarkers()}
     else{
     leafletProxy("mymap") %>%
       clearMarkers() %>%
