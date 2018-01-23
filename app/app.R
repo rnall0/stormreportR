@@ -104,11 +104,11 @@ server <- function(input, output, session) {
                   layers = "1",
                   options = WMSTileOptions(format = "image/png", transparent = "TRUE"),
                   attribution = "NOAA",
-                  group = "Current Weather Radar") %>% 
+                  group = "Current Weather Radar") #%>% 
 	    
-      hideGroup("Tornado Reports") %>%
-      hideGroup("Hail Reports") %>% 
-      hideGroup("Wind Reports")
+      #hideGroup("Tornado Reports") %>%
+      #hideGroup("Hail Reports") %>% 
+      #hideGroup("Wind Reports")
     }
   })
   
