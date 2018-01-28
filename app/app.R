@@ -33,7 +33,7 @@ server <- function(input, output, session) {
       
       addLayersControl(
         #baseGroups = c("OSM (default)", "Toner", "Toner Lite"),
-        overlayGroups = c("Hail Reports", "Tornado Reports", "Wind Reports", "Current Weather Radar"),
+        overlayGroups = c("Past Hail Reports", "Past Tornado Reports", "Past Wind Reports", "Current Weather Radar"),
         position = c("topleft"),
         options = layersControlOptions(collapsed = FALSE))
   })
@@ -78,7 +78,7 @@ server <- function(input, output, session) {
       addCircleMarkers(as.numeric(hail_filteredData()$Lon),
                        as.numeric(hail_filteredData()$Lat),
                        color = "blue",
-                       group = "Hail Reports",
+                       group = "Past Hail Reports",
 		       popup = paste("<b>Comments:</b>", hail_filteredData()$Comments, "<br/>", "<br/>",
 				     "<b>Size</b>: ", hail_filteredData()$Size, "<br/>", "<br/>",
 				     "<b>Time</b>: ", hail_filteredData()$Time, "<br/>", "<br/>",
@@ -86,7 +86,7 @@ server <- function(input, output, session) {
       addCircleMarkers(as.numeric(torn_filteredData()$Lon), 
                        as.numeric(torn_filteredData()$Lat), 
                        color = "red", 
-                       group = "Tornado Reports",
+                       group = "Past Tornado Reports",
                        popup = paste("<b>Comments:</b>", torn_filteredData()$Comments, "<br/>", "<br/>", 
                                      "<b>F-Scale</b>: ", torn_filteredData()$F_Scale, "<br/>", "<br/>",
                                      "<b>Time</b>: ", torn_filteredData()$Time, "<br/>", "<br/>", 
@@ -94,7 +94,7 @@ server <- function(input, output, session) {
       addCircleMarkers(as.numeric(wind_filteredData()$Lon), 
                        as.numeric(wind_filteredData()$Lat), 
                        color = "green", 
-                       group = "Wind Reports",
+                       group = "Past Wind Reports",
                        popup = paste("<b>Comments:</b>", wind_filteredData()$Comments, "<br/>", "<br/>", 
                                      "<b>Speed</b>: ", wind_filteredData()$Speed, "<br/>", "<br/>",
                                      "<b>Time</b>: ", wind_filteredData()$Time, "<br/>", "<br/>", 
@@ -106,9 +106,9 @@ server <- function(input, output, session) {
                   attribution = "NOAA",
                   group = "Current Weather Radar") #%>% 
 	    
-      #hideGroup("Tornado Reports") %>%
-      #hideGroup("Hail Reports") %>% 
-      #hideGroup("Wind Reports")
+      #hideGroup("Past Tornado Reports") %>%
+      #hideGroup("Past Hail Reports") %>% 
+      #hideGroup("Past Wind Reports")
     }
   })
   
