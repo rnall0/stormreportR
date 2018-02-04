@@ -2,14 +2,14 @@ library(googlesheets)
 library(dplyr)
 library (RPostgreSQL)
 
-gs_ls()
+#------Configure Date--------
+Date<-Sys.Date() - 1
+Date<-gsub("20", "", Date)
+Date<-sup<-gsub("-", "", sup)
 
 #------------Hail Reports----
-table <- "Hail Reports"
-sheet <- gs_title(table)
-hail<-gs_read_csv(sheet)
-hail<-tail(hail, 1)
-
+Csv<-"_rpts_hail.csv"
+hail<-data.frame(Date, Csv)
 
 link<-"http://www.spc.noaa.gov/climo/reports/"
 
@@ -30,24 +30,26 @@ system.time(for (i in 1:nrow(hail)){
 })
 
 
-drv <- dbDriver("PostgreSQL")
+if (is.null(hail.final) == TRUE){
+  print("No Hail Events Yesterday...")
+} else {
+  drv <- dbDriver("PostgreSQL")
 
-con <- dbConnect(drv, dbname = "db", 
+  con <- dbConnect(drv, dbname = "db", 
                  host = "host.elephantsql.com", 
                  port = 5432,
                  user = "username", password = "password")
 
-dbWriteTable(con,"hail_service", hail.final, row.names = FALSE, append = TRUE)
+  dbWriteTable(con,"hail_service", hail.final, row.names = FALSE, append = TRUE)
 
-dbDisconnect(con)
+  dbDisconnect(con)
+  print("Hail Event(s) Written to Database...")
+}
 
 
 #------Tornado Reports------
-table <- "Tornado Reports"
-sheet <- gs_title(table)
-torn<-gs_read_csv(sheet)
-torn<-tail(torn, 1)
-
+Csv<-"_rpts_torn.csv"
+torn<-data.frame(Date, Csv)
 
 link<-"http://www.spc.noaa.gov/climo/reports/"
 
@@ -67,25 +69,26 @@ system.time(for (i in 1:nrow(torn)){
   }
 })
 
+if (is.null(torn.final) == TRUE){
+  print("No Tornado Events Yesterday...")
+} else {
+  drv <- dbDriver("PostgreSQL")
 
-drv <- dbDriver("PostgreSQL")
-
-con <- dbConnect(drv, dbname = "db", 
+  con <- dbConnect(drv, dbname = "db", 
                  host = "host.elephantsql.com", 
                  port = 5432,
                  user = "username", password = "password")
 
-dbWriteTable(con,"tornado_service", torn.final, row.names = FALSE, append = TRUE)
+  dbWriteTable(con,"tornado_service", torn.final, row.names = FALSE, append = TRUE)
 
-dbDisconnect(con)
+  dbDisconnect(con)
+  print("Tornado Event(s) Written to Database...")
+}
 
 
 #-----Wind Reports----
-table <- "Wind Reports"
-sheet <- gs_title(table)
-wind<-gs_read(sheet)
-wind<-tail(wind, 1)
-
+Csv<-"_rpts_wind.csv"
+wind<-data.frame(Date, Csv)
 
 link<-"http://www.spc.noaa.gov/climo/reports/"
 
@@ -105,15 +108,18 @@ system.time(for (i in 1:nrow(wind)){
   }
 })
 
+if (is.null(wind.final) == TRUE){
+  print("No Wind Events Yesterday...")
+} else {
+  drv <- dbDriver("PostgreSQL")
 
-drv <- dbDriver("PostgreSQL")
-
-con <- dbConnect(drv, dbname = "db", 
+  con <- dbConnect(drv, dbname = "db", 
                  host = "host.elephantsql.com", 
                  port = 5432,
                  user = "username", password = "password")
 
-dbWriteTable(con,"wind_service", wind.final, row.names = FALSE, append = TRUE)
+  dbWriteTable(con,"wind_service", wind.final, row.names = FALSE, append = TRUE)
 
-dbDisconnect(con)
-
+  dbDisconnect(con)
+  print("Wind Event(s) Written to Database...")
+}
