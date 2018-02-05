@@ -5,7 +5,7 @@ library (RPostgreSQL)
 #------Configure Date--------
 Date<-Sys.Date() - 1
 Date<-gsub("20", "", Date)
-Date<-sup<-gsub("-", "", sup)
+Date<-gsub("-", "", Date)
 
 #------------Hail Reports----
 Csv<-"_rpts_hail.csv"
