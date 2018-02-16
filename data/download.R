@@ -4,6 +4,7 @@ library (RPostgreSQL)
 
 #------Configure Date--------
 Date<-Sys.Date() - 1
+print(paste("Yesterday's date was", Date))
 Date<-gsub("20", "", Date)
 Date<-gsub("-", "", Date)
 
@@ -18,7 +19,7 @@ total<-nrow(hail)
 hail.final<-NULL
 system.time(for (i in 1:nrow(hail)){
   counter <<- counter + 1;
-  message(paste(counter, "of", total))
+  message(paste(counter, "of", total, "for hail..."))
   dl<-paste(link,hail[i,1], hail[i,2], sep="")
   tbl<-read.csv(dl)
   if(nrow(tbl) == 0){
@@ -58,7 +59,7 @@ total<-nrow(torn)
 torn.final<-NULL
 system.time(for (i in 1:nrow(torn)){
   counter <<- counter + 1;
-  message(paste(counter, "of", total))
+  message(paste(counter, "of", total, "for tornadoes..."))
   dl<-paste(link,torn[i,1], torn[i,2], sep="")
   tbl<-read.csv(dl)
   if(nrow(tbl) == 0){
@@ -97,7 +98,7 @@ total<-nrow(wind)
 wind.final<-NULL
 system.time(for (i in 1:nrow(wind)){
   counter <<- counter + 1;
-  message(paste(counter, "of", total))
+  message(paste(counter, "of", total, "for wind..."))
   dl<-paste(link,wind[i,1], wind[i,2], sep="")
   tbl<-read.csv(dl)
   if(nrow(tbl) == 0){
