@@ -5,7 +5,7 @@ library (RPostgreSQL)
 #------Configure Date--------
 Date<-Sys.Date() - 1
 print(paste("Yesterday's date was", Date))
-Date<-gsub("20", "", Date)
+Date<-gsub("2018", "18", Date)
 Date<-gsub("-", "", Date)
 
 #------------Hail Reports----
