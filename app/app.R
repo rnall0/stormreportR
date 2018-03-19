@@ -77,7 +77,7 @@ server <- function(input, output, session) {
       clearMarkers() %>%
       addCircleMarkers(as.numeric(hail_filteredData()$Lon),
                        as.numeric(hail_filteredData()$Lat),
-                       color = "blue",
+                       color = "green",
                        group = "Past Hail Reports",
 		       popup = paste("<b>Comments:</b>", hail_filteredData()$Comments, "<br/>", "<br/>",
 				     "<b>Size</b>: ", hail_filteredData()$Size, "<br/>", "<br/>",
@@ -93,7 +93,7 @@ server <- function(input, output, session) {
                                      "<b>Date</b>: ", torn_filteredData()$Date)) %>%
       addCircleMarkers(as.numeric(wind_filteredData()$Lon), 
                        as.numeric(wind_filteredData()$Lat), 
-                       color = "green", 
+                       color = "blue", 
                        group = "Past Wind Reports",
                        popup = paste("<b>Comments:</b>", wind_filteredData()$Comments, "<br/>", "<br/>", 
                                      "<b>Speed</b>: ", wind_filteredData()$Speed, "<br/>", "<br/>",
