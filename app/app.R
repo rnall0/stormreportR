@@ -9,7 +9,7 @@ library(DBI)
 ui <- bootstrapPage(
   tags$style(type = "text/css", "html, body {width:100%;height:100%}"),
   leafletOutput("mymap", width = "100%", height = "100%"),
-  absolutePanel(top = 230, left = 10,
+  absolutePanel(top = 250, left = 10,
 		draggable = TRUE,
                 # sliderInput("date_range",
                 #     "Choose a Date Range:",
@@ -33,7 +33,7 @@ server <- function(input, output, session) {
       
       addLayersControl(
         #baseGroups = c("OSM (default)", "Toner", "Toner Lite"),
-        overlayGroups = c("Past Hail Reports", "Past Tornado Reports", "Past Wind Reports", "Current Weather Radar"),
+        overlayGroups = c("Past Hail Reports", "Past Tornado Reports", "Past Wind Reports", "Current Warnings", "Current Weather Radar"),
         position = c("topleft"),
         options = layersControlOptions(collapsed = FALSE))
   })
@@ -99,7 +99,13 @@ server <- function(input, output, session) {
                                      "<b>Speed</b>: ", wind_filteredData()$Speed, "<br/>", "<br/>",
                                      "<b>Time</b>: ", wind_filteredData()$Time, "<br/>", "<br/>", 
                                      "<b>Date</b>: ", wind_filteredData()$Date))
-	addWMSTiles(
+      addWMSTiles(
+                  "https://idpgis.ncep.noaa.gov/arcgis/services/NWS_Forecasts_Guidance_Warnings/watch_warn_adv/MapServer/WMSServer?",
+                  layers = "1",
+                  options = WMSTileOptions(format = "image/png", transparent = "TRUE"),
+                  attribution = "NOAA",
+                  group = "Current Warnings") %>% 
+      addWMSTiles(
                   "https://nowcoast.noaa.gov/arcgis/services/nowcoast/radar_meteo_imagery_nexrad_time/MapServer/WmsServer?",
                   layers = "1",
                   options = WMSTileOptions(format = "image/png", transparent = "TRUE"),
