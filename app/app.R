@@ -18,7 +18,7 @@ ui <- bootstrapPage(
                 #     value = c(as.Date("2017-10-07"), Sys.Date()))
                 dateRangeInput('date_range',
                                label = 'Select Date Range',
-                               start = Sys.Date() - 5, end = Sys.Date() - 1
+                               start = Sys.Date() - 1, end = Sys.Date() - 1
                 )
   )
 )
