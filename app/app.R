@@ -6,8 +6,9 @@ library(RPostgreSQL)
 library(leaflet.extras)
 library(DBI)
 
+Sys.setenv(TZ="America/Chicago")
+
 ui <- bootstrapPage(
-  Sys.setenv(TZ="America/Chicago"),
   tags$style(type = "text/css", "html, body {width:100%;height:100%}"),
   leafletOutput("mymap", width = "100%", height = "100%"),
   absolutePanel(top = 250, left = 10,
