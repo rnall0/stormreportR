@@ -117,6 +117,8 @@ server <- function(input, output, session) {
       #hideGroup("Past Tornado Reports") %>%
       #hideGroup("Past Hail Reports") %>% 
       #hideGroup("Past Wind Reports")
+      hideGroup("Current Warnings") %>%
+      hideGroup("Current Weather Radar")
     }
   })
   
