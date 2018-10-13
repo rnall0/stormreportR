@@ -11,7 +11,7 @@ Sys.setenv(TZ="America/Chicago")
 ui <- bootstrapPage(
   tags$style(type = "text/css", "html, body {width:100%;height:100%}"),
   leafletOutput("mymap", width = "100%", height = "100%"),
-  absolutePanel(top = 250, left = 10,
+  absolutePanel(top = 300, left = 10,
 		draggable = TRUE,
                 # sliderInput("date_range",
                 #     "Choose a Date Range:",
@@ -35,7 +35,7 @@ server <- function(input, output, session) {
       
       addLayersControl(
         #baseGroups = c("OSM (default)", "Toner", "Toner Lite"),
-        overlayGroups = c("Past Hail Reports", "Past Tornado Reports", "Past Wind Reports", "Current Warnings", "Current Weather Radar"),
+        overlayGroups = c("Past Hail Reports", "Past Tornado Reports", "Past Wind Reports", "Current Warnings", "Current Weather Radar", "Hurricane Michael Imagery"),
         position = c("topleft"),
         options = layersControlOptions(collapsed = FALSE))
   })
