@@ -112,7 +112,13 @@ server <- function(input, output, session) {
                   layers = "1",
                   options = WMSTileOptions(format = "image/png", transparent = "TRUE"),
                   attribution = "NOAA",
-                  group = "Current Weather Radar") #%>% 
+                  group = "Current Weather Radar") %>% 
+      addTiles(
+                  "https://stormscdn.ngs.noaa.gov/20181011a-rgb/{z}/{x}/{y}",
+                  #layers = "0",
+                  #options = WMSTileOptions(format = "image/png", transparent = "TRUE"),
+                  attribution = "NOAA Remote Sensing Division",
+                  group = "Hurricane Michael Imagery") #%>%  
 	    
       #hideGroup("Past Tornado Reports") %>%
       #hideGroup("Past Hail Reports") %>% 
